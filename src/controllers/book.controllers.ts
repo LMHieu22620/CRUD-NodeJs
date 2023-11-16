@@ -24,7 +24,9 @@ export const readBookController = async (
   res: Response,
   next: NextFunction
 ) => {
-  const result = await bookServices.readBook()
+  const page = parseInt(req.query.page as any) || 1 // Trang mặc định là 1
+  const limit = parseInt(req.query.limit as any) || 10 // Số lượng bản ghi mỗi trang mặc định là 10
+  const result = await bookServices.readBook(page, limit)
 
   return res.json(result)
 }

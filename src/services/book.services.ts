@@ -16,8 +16,12 @@ class BookServices {
       mesage: BOOKS_MESSAGE.CREATE_SUCCESS
     }
   }
-  async readBook() {
-    const result = await databaseService.book.find({}).toArray()
+  async readBook(page: number, limit: number) {
+    const result = await databaseService.book
+      .find({})
+      .skip((page - 1) * limit)
+      .limit(limit)
+      .toArray()
     return result
   }
   async getBookIdStatus(id: string) {
