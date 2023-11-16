@@ -23,7 +23,7 @@ class DatabaseService {
     }
   }
   get book(): Collection<Book> {
-    return this.db.collection(process.env.DB_BOOKS_COLLECTION as string)
+    return this.db.collection('book' as string)
   }
 }
 
