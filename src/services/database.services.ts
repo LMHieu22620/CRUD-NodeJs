@@ -2,13 +2,12 @@ import { config } from 'dotenv'
 import { Collection, Db, MongoClient } from 'mongodb'
 import Book from '~/models/schemas/Books.schema'
 config()
-const uri = `mongodb+srv://minhhieu207819:hieu123@crud.a6synfl.mongodb.net/`
 
 class DatabaseService {
   private client: MongoClient
   private db: Db
   constructor() {
-    this.client = new MongoClient(uri)
+    this.client = new MongoClient(process.env.MONGODB_CONNECT_URI as string)
     this.db = this.client.db('CRUD')
   }
 
