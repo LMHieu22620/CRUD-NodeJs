@@ -31,7 +31,7 @@ booksRouter.post('/create', bookValidator, wrapRequestHandler(createBookControll
  * Description: reads book
  * Path: /reads
  * Method:get
- *
+ *query:page,limit
 }
  */
 booksRouter.get('/reads', wrapRequestHandler(readBookController))
