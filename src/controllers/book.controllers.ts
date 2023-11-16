@@ -36,9 +36,7 @@ export const readBookWithIdController = async (req: Request, res: Response, next
 
   const result = await bookServices.getBookIdStatus(id as string)
 
-  return res.json({
-    result
-  })
+  return res.json(result)
 }
 
 export const updateBookWithIdController = async (req: Request, res: Response, next: NextFunction) => {
