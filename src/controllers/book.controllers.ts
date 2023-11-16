@@ -37,8 +37,7 @@ export const readBookWithIdController = async (req: Request, res: Response, next
   const result = await bookServices.getBookIdStatus(id as string)
 
   return res.json({
-    message: BOOKS_MESSAGE.GET_BOOK_WITH_ID_STATUS_SUCCESS,
-    result: result
+    result
   })
 }
 
