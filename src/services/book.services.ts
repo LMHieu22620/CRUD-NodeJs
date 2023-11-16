@@ -26,6 +26,7 @@ class BookServices {
   }
   async getBookIdStatus(id: string) {
     const data = await databaseService.book.findOne({ _id: new ObjectId(id) })
+
     return data
   }
   async updateBookIdStatus(id: string, payload: CreateBookReqBody) {

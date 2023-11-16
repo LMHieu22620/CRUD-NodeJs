@@ -42,7 +42,7 @@ booksRouter.get('/reads', wrapRequestHandler(readBookController))
  *
 }
  */
-booksRouter.get('/read/:id', bookValidator, wrapRequestHandler(readBookWithIdController))
+booksRouter.get('/read/:id', wrapRequestHandler(readBookWithIdController))
 /*
  * Description: update book with id
  * Path: /read/id
