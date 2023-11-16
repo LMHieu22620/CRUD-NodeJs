@@ -10,6 +10,6 @@ const port = 3001
 app.use(express.json())
 app.use('/books', booksRouter)
 app.use(defaulErrorHandler)
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(`port${port}`)
 })
