@@ -4,6 +4,8 @@ import {
   deleteBookWithIdController,
   readBookController,
   readBookWithIdController,
+  renderAddBookController,
+  renderUpdateBookController,
   updateBookWithIdController
 } from '~/controllers/book.controllers'
 import { bookValidator } from '~/middlewares/books.middlewares'
@@ -35,12 +37,19 @@ booksRouter.post('/create', bookValidator, wrapRequestHandler(createBookControll
 }
  */
 booksRouter.get('/reads', wrapRequestHandler(readBookController))
+
+booksRouter.get('/add', wrapRequestHandler(renderAddBookController))
+
+booksRouter.get('/update/:id', wrapRequestHandler(renderUpdateBookController))
+
 /*
  * Description: reads book with id
  * Path: /read/id
  * Method:get
  *
 }
+
+
  */
 booksRouter.get('/read/:id', wrapRequestHandler(readBookWithIdController))
 /*

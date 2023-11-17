@@ -4,6 +4,7 @@ import { ParamsDictionary } from 'express-serve-static-core'
 import { ObjectId } from 'mongodb'
 import HTTP_STATUS from '~/constants/httpStatus'
 import BOOKS_MESSAGE from '~/constants/message'
+import { ErrorWithStatus } from '~/models/Error'
 import { CreateBookReqBody } from '~/models/request/Book.request'
 import Book from '~/models/schemas/Books.schema'
 import bookServices from '~/services/book.services'
@@ -15,6 +16,7 @@ export const createBookController = async (
   next: NextFunction
 ) => {
   const result = bookServices.createBook(req.body)
+
   return res.json({
     mesage: BOOKS_MESSAGE.CREATE_SUCCESS
   })
@@ -25,10 +27,28 @@ export const readBookController = async (
   next: NextFunction
 ) => {
   const page = parseInt(req.query.page as any) || 1 // Trang mặc định là 1
-  const limit = parseInt(req.query.limit as any) || 10 // Số lượng bản ghi mỗi trang mặc định là 10
+  const limit = parseInt(req.query.limit as any) || 1000 // Số lượng bản ghi mỗi trang mặc định là 10
   const result = await bookServices.readBook(page, limit)
+  return res.render('book/read', { data: result })
+}
 
-  return res.json(result)
+export const renderAddBookController = async (req: Request, res: Response, next: NextFunction) => {
+  return res.render('book/add')
+}
+
+export const renderUpdateBookController = async (req: Request, res: Response, next: NextFunction) => {
+  const { id } = req.params
+  console.log(id)
+  const result = await bookServices.getBookIdStatus(id as string)
+
+  if (!result) {
+    throw new ErrorWithStatus({
+      message: BOOKS_MESSAGE.BOOK_NOT_FOUND,
+      status: HTTP_STATUS.NOT_FOUND
+    })
+  }
+
+  return res.render('book/update', { data: result })
 }
 
 export const readBookWithIdController = async (req: Request, res: Response, next: NextFunction) => {
