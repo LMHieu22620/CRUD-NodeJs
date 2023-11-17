@@ -38,7 +38,6 @@ export const renderAddBookController = async (req: Request, res: Response, next:
 
 export const renderUpdateBookController = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params
-  console.log(id)
   const result = await bookServices.getBookIdStatus(id as string)
 
   if (!result) {

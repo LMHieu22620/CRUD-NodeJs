@@ -40,7 +40,7 @@ booksRouter.get('/reads', wrapRequestHandler(readBookController))
 
 booksRouter.get('/add', wrapRequestHandler(renderAddBookController))
 
-booksRouter.get('/update', wrapRequestHandler(renderUpdateBookController))
+booksRouter.get('/update/:id', wrapRequestHandler(renderUpdateBookController))
 
 /*
  * Description: reads book with id
