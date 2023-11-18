@@ -1,6 +1,7 @@
 import { error } from 'console'
 import { NextFunction, Request, Response } from 'express'
 import { ParamsDictionary } from 'express-serve-static-core'
+import { validationResult } from 'express-validator'
 import { ObjectId } from 'mongodb'
 import HTTP_STATUS from '~/constants/httpStatus'
 import BOOKS_MESSAGE from '~/constants/message'
@@ -16,7 +17,6 @@ export const createBookController = async (
   next: NextFunction
 ) => {
   const result = bookServices.createBook(req.body)
-
   return res.json({
     mesage: BOOKS_MESSAGE.CREATE_SUCCESS
   })

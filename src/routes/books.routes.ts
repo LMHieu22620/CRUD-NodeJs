@@ -28,7 +28,7 @@ const booksRouter = Router()
       description?: string 
 }
  */
-booksRouter.post('/create', bookValidator, wrapRequestHandler(createBookController))
+booksRouter.post('/create', wrapRequestHandler(createBookController))
 /*
  * Description: reads book
  * Path: /reads
